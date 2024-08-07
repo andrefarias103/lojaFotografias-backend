@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
-import { CATEGORIA_REPOSITORIO } from 'src/comum/constantes/constantes';
+import { CATEGORIA_REPOSITORIO } from '../../../comum/constantes/constantes';
 import { AtualizaCategoriaDto } from '../dto/atualiza-categoria.dto';
 import { CadastraCategoriaDto } from '../dto/cadastra-categoria.dto';
 import { ListaCategoriaDto } from '../dto/lista-categoria.dto';
@@ -43,7 +43,7 @@ export class CategoriaService {
     return plainToInstance(ListaCategoriaDto, categoria);
   }
 
-  async remover(id: string) {
+  async remover(id: string): Promise<ListaCategoriaDto> {
     return await this.categoriaRepositorio.remover(id);
   }
 }
