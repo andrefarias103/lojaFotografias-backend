@@ -34,3 +34,34 @@ model Produto {
 
   @@map("Produto")
 }
+
+model Cliente {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  primeiroNome String    @unique() @map("primeiroNome") @db.String
+  ultimoNome   String    @map("ultimoNome") @db.String
+  email        String    @map("email") @db.String
+  senha        String    @map("senha") @db.String
+  telefone     String    @map("telefone") @db.String
+  endereco     Endereco?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @default(now())
+  deletedAt    DateTime  @default(now())
+
+  @@map("Cliente")
+}
+
+model Endereco {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  rua       String   @unique() @map("rua") @db.String
+  cidade    String   @map("cidade") @db.String
+  estado    String   @map("estado") @db.String
+  cep       Int      @map("cep") @db.Int
+  pais      String   @map("pais") @db.String
+  clienteId String   @unique @db.ObjectId
+  cliente   Cliente  @relation(fields: [clienteId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  deletedAt DateTime @default(now())
+
+  @@map("Endereco")
+}
