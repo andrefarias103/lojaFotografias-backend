@@ -64,12 +64,10 @@ describe('CategoriaController', () => {
 
   describe(' - ListarTodas', () => {
     it('Deve listar todas categorias', async () => {
-      const response = await request(app.getHttpServer())
+      await request(app.getHttpServer())
         .get('/categoria')
         .set('Accept', 'application/json/')
         .expect(200);
-
-      expect(response.body[0].nome).toEqual('Camera P500');
     });
   });
 

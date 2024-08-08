@@ -8,12 +8,29 @@ datasource db {
 }
 
 model Categoria {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  nome      String   @unique() @map("nome") @db.String
-  descricao String   @map("descricao") @db.String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  deletedAt DateTime @default(now())
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  nome      String    @unique() @map("nome") @db.String
+  descricao String    @map("descricao") @db.String
+  produtos  Produto[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+  deletedAt DateTime  @default(now())
 
   @@map("Categoria")
+}
+
+model Produto {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  nome        String    @unique() @map("nome") @db.String
+  descricao   String    @map("descricao") @db.String
+  preco       String    @map("preco") @db.String
+  estoque     Int       @map("estoque") @db.Int
+  imagem      String    @map("imagem") @db.String
+  categoriaId String    @db.ObjectId
+  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+  deletedAt   DateTime  @default(now())
+
+  @@map("Produto")
 }

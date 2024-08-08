@@ -1,2 +1,3 @@
 // src/autores/constants.ts
 export const CATEGORIA_REPOSITORIO = 'CATEGORIA_REPOSITORIO';
+export const PRODUTO_REPOSITORIO = 'PRODUTO_REPOSITORIO';
